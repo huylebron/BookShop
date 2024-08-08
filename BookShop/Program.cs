@@ -11,6 +11,7 @@ builder . Services . AddDbContext < ApplicationDbContext > (
         builder . Configuration . GetConnectionString ( "DefaultConnection" )
     )
 ) ;
+builder . Services . AddRazorPages ( ) . AddRazorRuntimeCompilation ( ) ;
 
 var app = builder . Build ( ) ;
 
