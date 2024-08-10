@@ -15,5 +15,18 @@ namespace BookShop . Controllers
         public IActionResult Index ( )
         { IEnumerable < Category > objCategoryList = _db . Categories . ToList ( ) ;
           return View ( objCategoryList ) ; }
+
+        public IActionResult Create ( )
+        { return View ( ) ; }
+
+        //post
+        [ HttpPost ]
+        [ ValidateAntiForgeryToken ] //  counter noob hacker :)))
+
+        // auto post category 
+        public IActionResult Create ( Category obj )
+        { _db . Categories . Add ( obj ) ;
+          _db . SaveChanges ( ) ;
+          return RedirectToAction ( "index" ) ; }
     }
 }
