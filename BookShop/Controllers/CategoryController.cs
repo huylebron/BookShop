@@ -20,13 +20,23 @@ namespace BookShop . Controllers
         { return View ( ) ; }
 
         //post
-        [ HttpPost ]
+        [ HttpPost ] // counter faken ;
         [ ValidateAntiForgeryToken ] //  counter noob hacker :)))
 
         // auto post category 
         public IActionResult Create ( Category obj )
-        { _db . Categories . Add ( obj ) ;
-          _db . SaveChanges ( ) ;
-          return RedirectToAction ( "index" ) ; }
+        { if ( obj . Name == obj . DisplayOrder . ToString ( ) )
+          {
+              ModelState . AddModelError ( "CustomError" , "the Name must not same  " ) ;
+          }
+
+          if ( ModelState . IsValid )
+          {
+              _db . Categories . Add ( obj ) ;
+              _db . SaveChanges ( ) ;
+              return RedirectToAction ( "index" ) ;
+          }
+
+          return View ( obj ) ; }
     }
 }
