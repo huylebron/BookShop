@@ -7,7 +7,7 @@ namespace BookShop . Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db ;
+        private readonly ApplicationDbContext _db ;s
 
         public CategoryController ( ApplicationDbContext db )
         { this . _db = db ; }
